@@ -531,6 +531,12 @@ require('lazy').setup {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        rust_analyzer = {},
+        gopls = {},
+        clangd = {},
+        pyright = {},
+        csharp_ls = {},
+        yamlls = {},
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -781,7 +787,29 @@ require('lazy').setup {
 
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
+        ensure_installed = {
+          'bash',
+          'c',
+          'html',
+          'lua',
+          'markdown',
+          'vim',
+          'vimdoc',
+          'c_sharp',
+          'python',
+          'cpp',
+          'go',
+          'gomod',
+          'gowork',
+          'comment',
+          'css',
+          'html',
+          'javascript',
+          'typescript',
+          'rust',
+          'yaml',
+          'gitignore',
+        },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = { enable = true },
@@ -807,7 +835,7 @@ require('lazy').setup {
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
