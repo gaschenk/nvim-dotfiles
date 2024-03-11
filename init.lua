@@ -819,6 +819,7 @@ require('lazy').setup {
           'rust',
           'yaml',
           'gitignore',
+          'gleam',
         },
         -- Autoinstall languages that are not installed
         auto_install = true,
