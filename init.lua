@@ -99,7 +99,7 @@ vim.g.maplocalleader = ' '
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -170,10 +170,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -537,6 +537,7 @@ require('lazy').setup {
         pyright = {},
         csharp_ls = {},
         yamlls = {},
+        gleam = {},
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
@@ -619,12 +620,21 @@ require('lazy').setup {
       },
       formatters_by_ft = {
         lua = { 'stylua' },
+        gleam = { 'gleam' },
+        csharp = { 'dotnet_format' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
+      },
+      formatters = {
+        dotnet_format = {
+          command = 'dotnet',
+          args = { 'format', '$FILENAME' },
+          stdin = false,
+        },
       },
     },
   },
@@ -640,7 +650,7 @@ require('lazy').setup {
           -- Build Step is needed for regex support in snippets
           -- This step is not supported in many windows environments
           -- Remove the below condition to re-enable on windows
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+          if vim.fn.has 'win32' == 0 or vim.fn.executable 'make' == 0 then
             return
           end
           return 'make install_jsregexp'
