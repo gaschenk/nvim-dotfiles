@@ -537,6 +537,7 @@ require('lazy').setup {
         pyright = {},
         csharp_ls = {},
         yamlls = {},
+        htmx = {},
         gleam = {},
         -- clangd = {},
         -- gopls = {},
