@@ -537,7 +537,9 @@ require('lazy').setup {
         pyright = {},
         csharp_ls = {},
         yamlls = {},
-        htmx = {},
+        htmx = {
+          filetypes = { 'html', 'templ', 'aspnetcorerazor', 'razor' },
+        },
         gleam = {},
         -- clangd = {},
         -- gopls = {},
@@ -738,12 +740,13 @@ require('lazy').setup {
     -- change the command in the config to whatever the name of that colorscheme is
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'folke/tokyonight.nvim',
+    'baliestri/aura-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
+    config = function(plugin)
       -- Load the colorscheme here
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.opt.rtp:append(plugin.dir .. '/packages/neovim')
+      vim.cmd.colorscheme 'aura-dark'
 
       -- You can configure highlights by doing something like
       vim.cmd.hi 'Comment gui=none'
